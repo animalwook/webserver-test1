@@ -1,0 +1,37 @@
+/*맨처음
+gradlew wrapper --gradle-version 4.10.2
+ */
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    /*이렇게 먼저 버전을 명시해서 사용해야 편하게 개발이가능하다*/
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+/*항상추가해야하는 자바와 스프링 부트 필수 플로인*/
+/*io.spring~~은 스프링부트의 의존성을 관리하는 플러그인*/
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+/*repositories는 각종 의존성(라이브러리)를 어떤 원격저장소에서 받을지 결정하는것.
+보통 mavenCentral에서 가져오지만 최근 업로드난이도로 jcenter에서 가져옮*/
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
